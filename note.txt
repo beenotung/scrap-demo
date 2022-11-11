@@ -1,0 +1,5 @@
+list page:
+https://www.agoda.com/search?checkin=2022-11-22&los=8&city=12080&adults=2&children=0&rooms=1
+
+detail page:
+https://www.agoda.com/unique-hotel-military-75-hotel/hotel/taichung-tw.html?finalPriceView=1&isShowMobileAppPrice=false&cid=-1&numberOfBedrooms=&familyMode=false&adults=2&children=0&rooms=1&maxRooms=0&checkIn=2022-11-22&isCalendarCallout=false&childAges=&numberOfGuest=0&missingChildAges=false&travellerType=-1&showReviewSubmissionEntry=false&currencyCode=HKD&isFreeOccSearch=false&isCityHaveAsq=false&tspTypes=-1&los=8&searchrequestid=796b1650-703a-47c9-b1a2-0725e38a6cc5

@@ -1,0 +1,96 @@
+# Visualize on https://erd.surge.sh
+# or https://quick-erd.surge.sh
+#
+# Relationship Types
+#  -    - one to one
+#  -<   - one to many
+#  >-   - many to one
+#  >-<  - many to many
+#  -0   - one to zero or one
+#  0-   - zero or one to one
+#  0-0  - zero or one to zero or one
+#  -0<  - one to zero or many
+#  >0-  - zero or many to one
+#
+////////////////////////////////////
+
+
+area
+----
+id integer PK
+name text
+
+
+city
+----
+id integer PK
+name text
+code text NULL
+area_id integer FK >- area.id
+
+
+hotel
+-----
+id integer PK
+city_id integer FK >- city.id
+code text
+name text
+address text
+desc text
+
+
+feature_group
+-------------
+id integer PK
+name text
+hotel_id integer FK >- hotel.id
+
+
+feature
+-------
+id integer PK
+feature_group_id integer FK >- feature_group.id
+name text
+is_available integer
+
+
+hotel_image
+-----------
+id integer PK
+hotel_id integer FK >- hotel.id
+url text
+
+
+hotel_facility
+--------------
+id integer PK
+hotel_id integer FK >- hotel.id
+facility_id integer FK >- facility.id
+
+
+facility
+--------
+id integer PK
+name text
+
+
+room
+----
+id integer PK
+type text
+hotel_id integer FK >- hotel.id
+original_price integer
+discount_price integer
+
+
+room_tag
+--------
+id integer PK
+room_id integer FK >- room.id
+
+
+room_image
+----------
+id integer PK
+room_id integer FK >- room.id
+url text
