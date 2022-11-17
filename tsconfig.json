@@ -1,5 +1,7 @@
 {
+  "exclude": ["dist"],
   "compilerOptions": {
+    "outDir": "dist",
     "target": "es2017",
     "module": "commonjs",
     "esModuleInterop": true,
