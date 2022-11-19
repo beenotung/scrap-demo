@@ -39,7 +39,7 @@
     </div>
 
     <template data-name="hotel">
-      <div class="hotel card shadow my-2 p-2" data-value="id">
+      <div class="hotel card shadow my-2 p-2">
         <h2 data-text="name"></h2>
         <p data-text="address"></p>
         <p data-text="desc"></p>
@@ -60,35 +60,24 @@
             data-onclick="openDialog"
           />
         </div>
-        <div
-          class="feature-groups"
-          data-template="feature-group"
-          data-bind="feature_groups"
-        ></div>
+        <div class="feature-groups">
+          <div data-value="feature_groups">
+            <h3 data-text="name"></h3>
+            <div class="feature-list">
+              <label data-value="features">
+                <input type="checkbox" data-checked="is_available" disabled />
+                <span data-text="name" data-show="is_available"></span>
+                <s data-hidden="is_available">
+                  <span data-text="name"></span>
+                </s>
+              </label>
+            </div>
+          </div>
+        </div>
       </div>
     </template>
 
-    <template data-name="feature-group">
-      <h3 data-text="name"></h3>
-      <div
-        class="feature-list"
-        data-value="id"
-        data-template="feature"
-        data-bind="features"
-      ></div>
-    </template>
-
-    <template data-name="feature">
-      <label>
-        <input type="checkbox" data-checked="is_available" disabled />
-        <span data-text="name" data-show="is_available"></span>
-        <s data-hidden="is_available">
-          <span data-text="name"></span>
-        </s>
-      </label>
-    </template>
-
-    <script src="https://cdn.jsdelivr.net/npm/data-template@1.3.2/base.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/data-template@1.3.3/base.js"></script>
     <script>
       getJSON('/hotels').then(json => {
         console.log(json)
@@ -106,26 +95,6 @@
         }
         console.log(json.hotels[0])
         renderTemplate(hotelList, json)
-
-        let hotelDict = Object.fromEntries(
-          json.hotels.map(hotel => [hotel.id, hotel]),
-        )
-
-        hotelList.querySelectorAll('.hotel').forEach(hotelNode => {
-          let hotel_id = hotelNode.value
-          let hotel = hotelDict[hotel_id]
-          let dialog = hotelNode.querySelector('dialog')
-          let dialogImg = dialog.querySelector('img')
-
-          renderTemplate(hotelNode.querySelector('.feature-groups'), hotel)
-
-          hotelNode.querySelectorAll('.feature-list').forEach(featureList => {
-            let group = hotel.feature_groups.find(
-              group => group.id == featureList.value,
-            )
-            renderTemplate(featureList, group)
-          })
-        })
       })
     </script>
   </body>
