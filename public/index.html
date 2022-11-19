@@ -96,8 +96,12 @@
           hotel.dialogId = 'dialog_' + hotel.id
           hotel.openDialog = event => {
             let dialog = window[hotel.dialogId]
-            dialog.open = true
             dialog.querySelector('img').src = event.target.src
+            document
+              .querySelectorAll('dialog[open]')
+              .forEach(dialog => (dialog.open = false))
+            dialog.open = true
+            dialog.scrollIntoView({ behavior: 'auto' })
           }
         }
         console.log(json.hotels[0])
